@@ -1,0 +1,14 @@
+/*@charset "utf-8"; - meta set : default가 utf-8이어서 안써도 됨*/
+
+h2 {
+	font-family: 돋움;
+	font-size: 40pt;
+	color: orange;
+}
+
+p { /*CSS선택자 - Selector*/
+	font-size: 20pt;
+	color: red;
+	background-color: gold;
+	font-family: 궁서체;
+}

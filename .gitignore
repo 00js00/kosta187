@@ -1,0 +1,7 @@
+*.dat
+*.zip
+.metadata
+.recommenders/
+*.tmp
+*.bak
+*.exe
