@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>상속</title>
+<script type="text/javascript">
+	// 부모 객체 정의
+	function Shape(x, y) {
+		this.x = x;
+		this.y = y;
+	}
+	// Shape 객체의 공통 메소드 정의
+	Shape.prototype.getArea = function() {
+		return 0;
+	}
+	Shape.prototype.getRound = function() {
+		return 0;
+	}
+	//1# 자식객체 정의
+	function Rectangle(x, y, width, height) {
+		//this.x = x;
+		//this.x = y;
+		// 생성자 체이닝(부모객체의 생성자를 명시적 호출 : super();???)
+		// 부모생성자를 생성된 현재객체의 메소드인것 처럼 호출
+		Shape.call(this, width, height);
+		// 첫번째 전달인자 : 생성자가 소속되어 호출될 객체
+		this.width = width;
+		this.height = height;
+	}
+	// #2.Rectangle의 프로토타입 객체로 Shape인스턴스를 설정하여
+	// Shape 프로토타입 객체의 공통 메소드를 상속받게 한다. 
+	Rectangle.prototype = new Shape(0, 0);
+	Rectangle.prototype.getArea = function() {
+		return this.width * this.height;
+	};
+	Rectangle.prototype.getRound = function() {
+		return 2(this.width + this.height);
+	};
+	// #3.Rectangle 인스턴스의 모든 프로퍼티를 상속받게 되므로
+	// 필요없는 프로퍼티는 삭제한다.
+	delete Rectangle.prototype.x;
+	delete Rectangle.prototype.y;
+	// #4.마지막으로 Rectangle 프로토타입 객체가 Shape 생성자를
+	// 사용해서 만들어졌으므로
+	// constructor 프로퍼티는 Shape 생성자를 참조하고 있다.
+	// constructor 프로퍼티를 Rectangle로 수정한다.
+	Rectangle.prototype.constructor = Rectangle;
+</script>
+</head>
+<body>
+  <script type="text/javascript">
+			var shape = new Shape(10, 20);
+			console.log("둘레 : " + shape.getArea());
+			var shape = new Rectangle(10, 20, 50, 30);
+			console.log("둘레 : " + shape.getArea());
+		</script>
+</body>
+</html>

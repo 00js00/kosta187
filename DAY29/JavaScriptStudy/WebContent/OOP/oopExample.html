@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script type="text/javascript">
+	/**
+	 * 사용자 정의 객체 (생성자)
+	 */
+
+	function Student(name, korean, math, english, science) {
+		this.name = name;
+		this.korean = korean;
+		this.math = math;
+		this.english = english;
+		this.science = science;
+
+		this.getSum = function() {
+			return this.korean + this.math + this.english + this.science;
+		}
+		this.getAverage = function() {
+			return this.getSum() / 4;
+		}
+		this.toString = function() {
+			return this.name + "\t" + this.korean + "\t" + this.math + "\t"
+					+ this.english + "\t" + this.science; // 오버라이딩이랑 비슷
+		}
+
+	}
+	Student.schoolName= "KOSTA 대학교"; // 메모리 저장가능
+</script>
+</head>
+<body>
+  <script type="text/javascript">
+			var student = new Student('서지원', 90, 50, 98, 70);
+			console.log(student.name);
+			console.log(student.korean);
+			console.log(student["math"]);
+
+			console.log(typeof student); //object
+			console.log(typeof Student); //function
+			console.log(student.toString()); // toString 찍어보기
+			console.log(student); //브라우저가 이거에 대한 값을 문자열로 주는 것 - 브라우저엔진마다 다름
+			console.log('총점 : ' + student.getSum());
+			console.log('평균 : ' + student.getAverage());
+			console.log(Student.schoolName); // 메모리 read
+		</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script type="text/javascript">
+	/**
+	 * 내장 개체 테스트
+	 */
+	var string = new String('서지원');
+	console.log(string.charAt(1));
+
+	var today = new Date();
+	console.log(today.toString());
+	
+	var array = new Array();
+	array.push(1);
+	array.push('김기정');
+	console.log(array.pop()); // 마지막에 넣은 애만 빼는 거
+	
+	var sum = new Function("x","y","return x + y;") // 동적 함수 생성
+	console.log(sum(2,3));
+
+</script>
+</body>
+</html>

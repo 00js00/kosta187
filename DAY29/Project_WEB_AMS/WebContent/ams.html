@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script type="text/javascript" src="js/accountManager.js"></script>
+<script type="text/javascript" src="js/Account.js"></script>
+<script type="text/javascript" src="js/MinusAccount.js"></script>
+</head>
+<body>
+  <h2>배열을 이용한 은행관리 웹 애플리케이션</h2>
+</body>
+<script type="text/javascript">
+	//var students = new Array();
+	// (accountManager역할) 배열을 담을 수 있는 주머니 생성
+	var manager = new AccountManager();
+
+	// 등록 (account역할)
+	var account = new Account("1111-2222-3333", "서지원", 1234, 1000);
+	manager.add(account);
+
+	manager.add(new Account("1111-2222-3330", "김지원", 1234, 1000));
+	manager.add(new Account("1111-2222-3334", "최지원", 1234, 1000));
+	manager.add(new Account("1111-2222-3335", "박지원", 1234, 1000));
+	manager.add(new Account("1111-2222-3336", "최지원", 1234, 1000));
+	manager.add(new MinusAccount("1111-1111-1111","대출씨",1234,1000,10000))
+	console.log("------------add-------------");
+	for ( var i in manager.accounts) {
+		console.log(manager.accounts[i].toString());
+	}
+	console.log("-----------get-------------");
+	console.log(manager.get("1111-2222-3333"));
+	console.log("-----------search-------------");
+	temp = manager.search("최지원");
+	for (var i in temp) {
+		console.log(temp[ i].toString() + '\n');
+	}
+	console.log("-----------remove-------------");
+	manager.remove("1111-1111-1111");
+	for ( var i in manager.accounts) {
+		console.log(manager.accounts[i].toString());
+	}
+	/*
+	 // 성적순으로 정렬 [내림차순]
+	 students.sort(function(student1, student2){
+	 return student2.getSum() - student1.getSum();   
+	 });
+
+	 /* 역순으로 지정하기 [오름차순]
+	 students.sort(function(student1, student2){
+	 return student2.getSum() - student1.getSum();   
+	 });
+
+
+	 // 전체목록 출력
+	 for ( var i in students) {
+	 console.log(students[i].toString() + "<br>");
+	 }
+
+	 console.log("1등부터 3등");
+	 var students2 = students.slice(0, 3);
+	 for ( var i in students2) {
+	 console.log(students2[i].toString() + "<br>");
+	 }
+	 */
+</script>
+</body>
+</html>
