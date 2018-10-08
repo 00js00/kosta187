@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<title>이벤트 처리</title>
+<meta charset="utf-8">
+<script>
+window.onload = function () {
+	
+	console.log(document.myForm.name);
+	console.log(document.myForm.action);
+	console.log(document.myForm.method);
+	
+	document.myForm.name.onclick = function(){
+		//document.myForm.name.value = ""; //setText랑 똑같음
+		this.value = "";
+	}
+	
+	document.myForm.onsubmit = function () {
+		//var name = document.myForm.name.value;
+		var name = document.forms[0].elements[0].value; // 자식들에게 동적으로 접근
+		if(name == null || name.length == 0){
+			alert('이름을 입력하여 주세요.');
+			 document.myForm.name.focus();
+			return false; // 디폴트 이벤트핸들러 제거 - 안해주면 계속 남아있음
+		}
+		return true;
+		//document.myForm.submit();  //전송기능
+	};
+};
+</script> 
+</head>
+<body>
+<form name="myForm" action="#">
+<!-- 서버에 제출하는 이벤트 : submit 이벤트 : 이벤트 리스너는 form 에 달아줘야함 --> 
+  <input type="text" name="name" value="이름"/><br>
+  <input type="submit" value="제출"/>
+</form> 	
+</body>
+</html>
+
+
+
+
+

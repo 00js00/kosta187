@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="js/accountManager.js"></script>
+<script type="text/javascript" src="js/Account.js"></script>
+<script type="text/javascript" src="js/MinusAccount.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewpoint" content="width=divice-width, initial-scale=1">
+<title>AMS</title>
+<style type="text/css">
+ul {
+	list-style: none;
+}
+
+.list li {
+	display: inline-block;
+	text-align: center;
+}
+
+.output {
+	margin: 0 auto;
+	overflow: auto;
+}
+
+.output>table {
+	width: 50%;
+}
+
+#input {
+	width: 40%;
+	margin: 0 auto;
+	overflow: auto;
+}
+
+.output * {
+	border-width: thin;
+	border-style: solid;
+	text-align: center;
+	margin: 0 auto;
+}
+
+h2 {
+	text-align: center;
+	text-shadow: 2px 2px gold;
+}
+
+#accountList {
+	display: inline-block;
+	margin: 0 0 0 27%;
+	border-style: none;
+	font-weight: bold;
+}
+
+#won {
+	float: right;
+	margin: 0 27% 0 0;
+	border-style: none;
+	font-weight: bold;
+}
+
+.box {
+	font-weight: bold;
+}
+
+.button {
+	font-weight: bold;
+	width: 80px;
+	height: 28px;
+	background-color: gold;
+	border: none;
+	color: black;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+	margin: 4px;
+	cursor: pointer;
+	border-radius: 10px;
+	width: 80px;
+}
+
+th {
+	background-color: gold;
+}
+</style>
+</head>
+<body>
+  <div class="AMS">
+    <div>
+      <h2>계좌 입출력 관리</h2>
+    </div>
+    <div id="input">
+      <div>
+        <ul class="list">
+          <li class="box">계좌종류</li>
+          <li><select name="kind" id="kind">
+              <option>전체</option>
+              <option>입출금계좌</option>
+              <option>마이너스계좌</option>
+          </select></li>
+        </ul>
+      </div>
+      <div>
+        <ul class="list">
+          <li class="box">계좌번호</li>
+          <li><input type="text" name="accountNum" id="accountNum"></li>
+          <li><input type="button" value="조회" name="search"
+            class="button" id="search"></li>
+          <li><input type="button" value="삭제" name="delete"
+            class="button" id="delete"></li>
+        </ul>
+      </div>
+      <div>
+        <ul class="list">
+          <li class="box">예금주명</li>
+          <li><input type="text" name="accountOwner"
+            id="accountOwner"> <input type="button" value="검색"
+            name="find" class="button" id="find"></li>
+        </ul>
+      </div>
+      <div>
+        <ul class="list">
+          <li class="box">비밀번호</li>
+          <li><input type="text" name="passwd" id="passwd"></li>
+          <li class="box">입금금액</li>
+          <li><input type="text" name="deposit" id="deposit"></li>
+        </ul>
+      </div>
+      <div>
+        <ul class="list">
+          <li class="box">대출금액</li>
+          <li><input type="text" name="borrowMoney"
+            id="borrowMoney"></li>
+          <li><input type="button" value="신규등록" name="regist"
+            class="button" id="regist"></li>
+          <li><input type="button" value="전체조회" name="listAll"
+            class="button" id="listAll"></li>
+        </ul>
+      </div>
+    </div>
+    <div class="output">
+      <div id="accountList">계좌목록</div>
+      <div id="won">(단위:원)</div>
+      <table>
+        <tr>
+          <th>계좌종류</th>
+          <th>계좌번호</th>
+          <th>예금주명</th>
+          <th>현재잔액</th>
+          <th>대출금액</th>
+        </tr>
+        <tbody id="put">
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+			var manager = new AccountManager();
+			var account = new Account("1111-2222-3333", "서지원", 1234, 1000);
+			manager.add(account);
+
+			manager.add(new Account("1111-2222-3330", "김지원", 1234, 1000));
+			manager.add(new Account("1111-2222-3334", "최지원", 1234, 1000));
+			manager.add(new Account("1111-2222-3335", "박지원", 1234, 1000));
+			manager.add(new Account("1111-2222-3336", "최지원", 1234, 1000));
+			manager.add(new MinusAccount("1111-1111-1111", "대출씨", 1234, 1000,
+					10000));
+			// regist
+			var doRegist = document.getElementById("regist");
+			function clickRegist() {
+				var target = document.getElementById("kind");
+				var kind = target.options[target.selectedIndex].text;
+				if (kind == "전체") {
+					//전체 비활성화
+				}
+				var accountNum = document.getElementById("accountNum").value;
+				var accountOwner = document.getElementById("accountOwner").value;
+				var passwd = parseInt(document.getElementById("passwd").value);
+				var deposit = parseInt(document.getElementById("deposit").value);
+				if (kind == "마이너스계좌") {
+					var borrowMoney = document.getElementById("borrowMoney").value;
+					manager.add(new MinusAccount(accountNum, accountOwner,
+							passwd, deposit));
+					console.log("성공~");
+					// borrowMoney 활성화
+				} else {
+					manager.add(new Account(accountNum, accountOwner, passwd,
+							deposit));
+					console.log("성공쓰");
+				}
+
+			}
+			doRegist.onclick = clickRegist;
+			// listAll
+			var doListAll = document.getElementById("listAll");
+			function clickListAll() {
+				var accountSet = document.querySelector("accountSet");
+				var data = [];
+				for ( var i in manager.list()) {
+					console.log(manager.list()[i]);
+					if (manager.list()[i] instanceof MinusAccount) {
+						var minus = {
+							kind : "마이너스계좌",
+							accountNum : manager.list()[i].accountNum,
+							accountOwner : manager.list()[i].accountOwner,
+							restMoney : manager.list()[i].restMoney,
+							borrowMoney : (manager.list()[i].restMoney - manager
+									.list()[i].borrowMoney)
+						};
+						data.push(minus);
+					} else {
+						var plus = {
+							kind : "입출금계좌",
+							accountNum : manager.list()[i].accountNum,
+							accountOwner : manager.list()[i].accountOwner,
+							restMoney : manager.list()[i].restMoney,
+							borrowMoney : ''
+						};
+						data.push(plus);
+					}
+				}
+				var html = document.querySelector("#accountSet").innerHTML;
+				console.log(html);
+
+				var resultHTML = "";
+				for (var i = 0; i < data.length; i++) {
+					resultHTML += html.replace("{kind}", data[i].kind).replace(
+							"{accountNum}", data[i].accountNum).replace(
+							"{accountOwner}", data[i].accountOwner).replace(
+							"{restMoney}", data[i].restMoney).replace(
+							"{borrowMoney}", data[i].borrowMoney);
+				}
+				document.querySelector("#put").innerHTML = resultHTML;
+			}
+			doListAll.onclick = clickListAll;
+			//search
+			var doSearch = document.getElementById("search");
+			function clickSearch() {
+
+			}
+			doSearch.onclick = clickSearch;
+			//find
+			var doFind = document.getElementById("find");
+			function clickFind() {
+
+			}
+			doFind.onclick = clickFind;
+			//delete
+			var doDelete = document.getElementById("delete");
+			function clickDelete() {
+
+			}
+			doDelete.onclick = clickDelete;
+		</script>
+</body>
+<script id="accountSet" type="text/template">
+<tr><td>{kind}</td><td>{accountNum}</td><td>{accountOwner}</td><td>{restMoney}</td><td>{borrowMoney}</td></tr>
+</script>
+</html>

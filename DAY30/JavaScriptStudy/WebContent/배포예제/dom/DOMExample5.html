@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>DOM 이해</title>
+<script type="text/javascript">
+function toggle(titleE){
+	var title = titleE.firstChild.nodeValue;
+	var reply = document.getElementById("reply");
+	if(title == '댓글숨기기'){
+		titleE.firstChild.nodeValue = "댓글보이기";
+		//document.body.removeChild(reply);
+		//없애는 방법 2가지 
+		reply.style.display = "none";
+		//reply.style.visibility = "hidden";
+	}else{
+		titleE.firstChild.nodeValue = "댓글숨기기";
+		reply.style.display = "block";
+	}
+}
+</script>
+</head>
+<body>
+<!--  <a id="eventSoruce" href="javascript:toggle(document.getElementById('eventSoruce'));">댓글숨기기</a>-->
+<div onclick="toggle(this);">댓글숨기기</div> <!-- this: 이 앞에 div 을 말함  : 만약 a 에 this 넣으면 window 객체 말함-->
+<div id="reply" style="width:500p; height:200px; border: 1px solid blue;">요넘이 댓글 내용입니다..</div>
+임시 텍스트
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
