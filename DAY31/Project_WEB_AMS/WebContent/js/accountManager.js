@@ -1,0 +1,44 @@
+/**
+ * accountManager 은행 계좌 관리
+ */
+
+function AccountManager() {
+	this.accounts = [];
+};
+
+AccountManager.prototype.add = function(account) {
+	if (account instanceof Account) {
+		this.accounts.push(account);
+	} else
+		console.log('안돼 돌아가');
+	return;
+};
+AccountManager.prototype.list = function() {
+	return this.accounts;
+};
+AccountManager.prototype.get = function(accountNum) {
+	var temp = [];
+	for ( var i in this.accounts) {
+		if (this.accounts[i].accountNum == accountNum) {
+			temp.push(this.accounts[i]);
+			break;
+		}
+		;
+	}
+	;
+	return temp;
+};
+AccountManager.prototype.search = function(accountOwner) {
+	return this.accounts.filter(function(v) {
+		return (v.accountOwner == accountOwner);
+	});
+};
+AccountManager.prototype.remove = function(accountNum) {
+	for ( var i in this.accounts) {
+		if (this.accounts[i].accountNum == accountNum) {
+			this.accounts.splice(i, 1);
+		}
+		;
+	}
+	;
+};

@@ -1,0 +1,91 @@
+@charset "utf-8";
+ul {
+	list-style: none;
+}
+
+.list li {
+	display: inline-block;
+	text-align: center;
+}
+
+.output {
+	margin: 0 auto;
+	overflow: auto;
+}
+
+.output>table {
+	width: 50%;
+}
+
+#input {
+	width: 40%;
+	margin: 0 auto;
+	overflow: auto;
+}
+
+.output * {
+	border-width: thin;
+	border-style: solid;
+	text-align: center;
+	margin: 0 auto;
+}
+
+h2 {
+	text-align: center;
+	text-shadow: 2px 2px gold;
+}
+
+#accountList {
+	display: inline-block;
+	margin: 0 0 0 27%;
+	border-style: none;
+	font-weight: bold;
+}
+
+#won {
+	float: right;
+	margin: 0 27% 0 0;
+	border-style: none;
+	font-weight: bold;
+}
+
+.errorBox {
+	margin-left: 3%;
+}
+
+#error {
+	color: red;
+}
+#info{
+	color: blue;
+}
+.errorBox, .errorBox * {
+	border-style: none;
+	font-weight: bold;
+	font-size: 110%;
+}
+
+.box {
+	font-weight: bold;
+}
+
+.button {
+	font-weight: bold;
+	width: 80px;
+	height: 28px;
+	background-color: gold;
+	border: none;
+	color: black;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+	margin: 4px;
+	cursor: pointer;
+	border-radius: 10px;
+	width: 80px;
+}
+
+th {
+	background-color: gold;
+}

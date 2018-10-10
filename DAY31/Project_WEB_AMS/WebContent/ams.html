@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="js/accountManager.js"></script>
+<script type="text/javascript" src="js/Account.js"></script>
+<script type="text/javascript" src="js/MinusAccount.js"></script>
+<link type="text/css" href="css/CSS.css" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewpoint" content="width=divice-width, initial-scale=1">
+<title>AMS</title>
+</head>
+<body>
+  <div class="AMS">
+    <div>
+      <h2>계좌 입출력 관리</h2>
+    </div>
+    <div id="input">
+      <div>
+        <ul class="list">
+          <li class="box">계좌종류</li>
+          <li><select name="kind" id="kind">
+              <option hidden>선택하세요</option>
+              <option>입출금계좌</option>
+              <option>마이너스계좌</option>
+          </select></li>
+        </ul>
+      </div>
+      <div>
+        <ul class="list">
+          <li class="box">계좌번호</li>
+          <li><input type="text" name="accountNum" id="accountNum"
+            placeholder="예) 0000-0000-0000"></li>
+          <li><input type="button" value="조회" name="find"
+            class="button" id="find"></li>
+          <li><input type="button" value="삭제" name="delete"
+            class="button" id="delete"></li>
+        </ul>
+      </div>
+      <div>
+        <ul class="list">
+          <li class="box">예금주명</li>
+          <li><input type="text" name="accountOwner"
+            id="accountOwner" placeholder="예) 홍길동" autocomplete="off">
+            <input type="button" value="검색" name="search" class="button"
+            id="search"></li>
+        </ul>
+      </div>
+      <div>
+        <ul class="list">
+          <li class="box">비밀번호</li>
+          <li><input type="password" name="passwd" id="passwd"
+            placeholder="예) XXXX"></li>
+          <li class="box">입금금액</li>
+          <li><input type="text" name="deposit" id="deposit"
+            placeholder="예) 1000"></li>
+        </ul>
+      </div>
+      <div>
+        <ul class="list">
+          <li class="box">대출금액</li>
+          <li><input type="text" name="borrowMoney"
+            id="borrowMoney" placeholder="예) 1000"></li>
+          <li><input type="button" value="신규등록" name="regist"
+            class="button" id="regist"></li>
+          <li><input type="button" value="전체조회" name="listAll"
+            class="button" id="listAll"></li>
+        </ul>
+      </div>
+    </div>
+    <div class="output">
+      <div id="accountList">계좌목록</div>
+      <span class="errorBox"><label id="error"></label><label
+        id="info"></label><label id="errorText"></label></span>
+      <div id="won">(단위:원)</div>
+      <table>
+        <tr>
+          <th>계좌종류</th>
+          <th>계좌번호</th>
+          <th>예금주명</th>
+          <th>현재잔액</th>
+          <th>대출금액</th>
+        </tr>
+        <tbody id="put">
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script id="accountSet" type="text/template">
+<tr><td>{kind}</td><td>{accountNum}</td><td>{accountOwner}</td><td>{restMoney}</td><td>{borrowMoney}</td></tr>
+</script>
+  <script type="text/javascript" src="js/function.js"></script>
+  <script type="text/javascript">
+			window.onload = function() {
+				init();
+				eventRegist();
+			}
+		</script>
+</body>
+</html>
