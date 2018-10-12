@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+<h2>DOM이란</h2>
+<p>자리돔이 최고여... </p>
+<h2>DOM이란</h2>
+<p>자리돔이 최고여... </p>
+<h2>DOM이란</h2>
+<p>자리돔이 최고여... </p>
+
+
+<script type="text/javascript">
+//DOM API를 이용한 DOM 객체 접근
+var array = document.getElementsByTagName("h2"); 
+console.log(array.length);
+/*for ( var i in array) {
+	var obj = array[i];
+	console.log(obj.constructor);
+}*/ // 이렇게 돌면 의도하지 않은 값들도 같이 낄 수도 있음
+
+for (var i = 0; i < array.length; i++) {
+	var obj = array[i];
+	//console.log(obj.constructor);
+	obj.style="color:red";
+}
+
+</script>
+
+
+</body>
+</html>

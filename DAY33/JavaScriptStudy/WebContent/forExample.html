@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>제어문</title>
+<link rel="stylesheet" type="text/css" href="css/table.css">
+</head>
+<body>
+  <h2>for/in 문</h2>
+  <script type="text/javascript">
+			//묵시적 배열 생성 및 초기화
+			var array = [ 1, 2, 3, 4, 5 ]; // {} 는 오브젝트
+			console.log(array.length);
+			for ( var i in array) {
+				console.log(i + ":" + array[i]);
+			}
+			
+			for ( var key in document) {
+				console.log(key + ":" + document[key]); // documnet.key 안됨 : 연관배열 -- 많이 쓰는 디버깅 방법
+			}
+			</script>
+</body>
+</html>

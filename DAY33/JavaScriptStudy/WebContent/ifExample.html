@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+  <script type="text/javascript">
+			var score = prompt("성적을 입력하세요", 0); // string으로 받음 + 초기값 지정
+			//score = parseInt(score); //number로 변환
+			//console.log(score);
+			console.log(typeof score); //값 : number
+			if (score >= 90) {
+				console.log("수");
+			} else if (score >= 80) {
+				console.log("우");
+			} else if (score >= 70) {
+				console.log("미");
+			} else if (score >= 60) {
+				console.log("양");
+			} else {
+				console.log("가");
+			}
+
+			console.log(10 * "10"); //값 : 100
+			//자동형변환 일어남 
+			console.log(10 + "10"); // 값 : 1010
+		</script>
+</body>
+</html>
