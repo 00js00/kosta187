@@ -12,3 +12,4 @@ projection by templated - home
 자료실
 footer 삭제
 
+로그인 후 버튼 -> 로그아웃 
